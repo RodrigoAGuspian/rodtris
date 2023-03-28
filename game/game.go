@@ -11,13 +11,14 @@ import (
 )
 
 const (
-	SCREEN_WIDTH  = 480
-	SCREEN_HEIGHT = 480
+	SCREEN_WIDTH  = 800
+	SCREEN_HEIGHT = 800
 	SCORE         = "SCORE"
 	GAME_OVER     = "GAME OVER!"
 	PRESS_SPACE   = "PRESS SPACE"
 	TO_PLAY       = "TO PLAY"
 	NEXT          = "NEXT"
+	SIZE          = 24
 )
 const (
 	GameStateGamerOver GameState = iota
@@ -163,21 +164,21 @@ func (g *Game) drawText(screen *ebiten.Image, gameZonePosition *Position) {
 	boardBlockWidth, _ := g.bgBlockImage.Size()
 	boardWidth := int(g.gameZoneSize.Width) * boardBlockWidth
 	text.Draw(screen, SCORE, g.txtFont, boardWidth+gameZonePosition.X*2, gameZonePosition.Y*2, color.White)
-	text.Draw(screen, fmt.Sprintf("%08d", g.score), g.txtFont, boardWidth+gameZonePosition.X*2, gameZonePosition.Y*2+8, color.White)
+	text.Draw(screen, fmt.Sprintf("%08d", g.score), g.txtFont, boardWidth+gameZonePosition.X*2, gameZonePosition.Y*2+SIZE, color.White)
 
 	if g.state == GameStateGamerOver {
-		dy := 148
+		dy := SIZE * 16
 		text.Draw(screen, GAME_OVER, g.txtFont, boardWidth+gameZonePosition.X*2, gameZonePosition.Y*2+dy, color.White)
-		text.Draw(screen, PRESS_SPACE, g.txtFont, boardWidth+gameZonePosition.X*2, gameZonePosition.Y*2+8+dy, color.White)
+		text.Draw(screen, PRESS_SPACE, g.txtFont, boardWidth+gameZonePosition.X*2, gameZonePosition.Y*2+SIZE+dy, color.White)
 	}
 
 	if g.attractMode {
-		dy := 148
+		dy := SIZE * 16
 		text.Draw(screen, PRESS_SPACE, g.txtFont, boardWidth+gameZonePosition.X*2, gameZonePosition.Y*2+dy, color.White)
-		text.Draw(screen, TO_PLAY, g.txtFont, boardWidth+gameZonePosition.X*2, gameZonePosition.Y*2+8+dy, color.White)
+		text.Draw(screen, TO_PLAY, g.txtFont, boardWidth+gameZonePosition.X*2, gameZonePosition.Y*2+SIZE+dy, color.White)
 	}
 
-	dy := 48
+	dy := SIZE * 5
 	text.Draw(screen, NEXT, g.txtFont, boardWidth+gameZonePosition.X*2, gameZonePosition.Y*2+dy, color.White)
 }
 
@@ -222,7 +223,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	}
 
 	if g.nextPiece != nil {
-		nextPosition := &Position{X: int(math.Round(SCREEN_WIDTH * 0.25)), Y: int(math.Round(SCREEN_HEIGHT * 0.22))}
+		nextPosition := &Position{X: int(math.Round(SCREEN_WIDTH * 0.5)), Y: int(math.Round(SCREEN_HEIGHT * 0.22))}
 		g.nextPiece.Draw(screen, nextPosition, &Position{})
 	}
 

@@ -15,7 +15,7 @@ func NewFont() font.Face {
 	var generalFont font.Face
 
 	generalFont, err = opentype.NewFace(typeText, &opentype.FaceOptions{
-		Size: 8,
+		Size: 24,
 		DPI:  72,
 	})
 
