@@ -2,29 +2,23 @@ package main
 
 import (
 	"log"
+	"main/game"
+	"math/rand"
+	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 )
 
-type Game struct{}
-
-func (g *Game) Update() error {
-	return nil
-}
-
-func (g *Game) Draw(screen *ebiten.Image) {
-	ebitenutil.DebugPrint(screen, "Hello, World!")
-}
-
-func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
-	return 1080, 720
-}
+const NAME = "Rodtris"
 
 func main() {
-	ebiten.SetWindowSize(1080, 720)
-	ebiten.SetWindowTitle("Hello, World!")
-	if err := ebiten.RunGame(&Game{}); err != nil {
+	rand.Seed(time.Now().UnixNano())
+	newGame := game.NewGame()
+
+	ebiten.SetWindowSize(game.SCREEN_WIDTH, game.SCREEN_HEIGHT)
+	ebiten.SetWindowTitle(NAME)
+
+	if err := ebiten.RunGame(newGame); err != nil {
 		log.Fatal(err)
 	}
 }
