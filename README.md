@@ -1,5 +1,5 @@
 # rodtris
 
 Hacer: 
-go mod tiny 
-go run .
+- go mod tiny 
+- go run .
