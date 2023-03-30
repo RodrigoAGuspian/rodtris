@@ -11,8 +11,8 @@ import (
 )
 
 const (
-	SCREEN_WIDTH  = 800
-	SCREEN_HEIGHT = 800
+	SCREEN_WIDTH  = 640
+	SCREEN_HEIGHT = 640
 	SCORE         = "SCORE"
 	GAME_OVER     = "GAME OVER!"
 	PRESS_SPACE   = "PRESS SPACE"
@@ -223,7 +223,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	}
 
 	if g.nextPiece != nil {
-		nextPosition := &Position{X: int(math.Round(SCREEN_WIDTH * 0.5)), Y: int(math.Round(SCREEN_HEIGHT * 0.22))}
+		nextPosition := &Position{X: int(math.Round(SCREEN_WIDTH * 0.5)), Y: int(math.Round(SCREEN_HEIGHT * 0.3))}
 		g.nextPiece.Draw(screen, nextPosition, &Position{})
 	}
 
