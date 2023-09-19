@@ -1,5 +1,5 @@
 # rodtris
 
-Hacer: 
+Ejecutar: 
 - go mod tiny 
 - go run .
